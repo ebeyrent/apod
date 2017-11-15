@@ -1,0 +1,4 @@
+administer apod:
+  title: 'Administer Astronomy Picture of the Day'
+  description: 'Able to administer the apod module.'
+  restrict access: FALSE

@@ -1,0 +1,116 @@
+{
+  "name": "raft/door-sign-generator",
+  "description": "RAFT Door Sign Generator",
+  "type": "project",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "",
+      "role": ""
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "require": {
+    "composer/installers": "^1.0.20",
+    "drupal-composer/drupal-scaffold": "^2.0.1",
+    "cweagans/composer-patches": "~1.0",
+    "vlucas/phpdotenv": "^2.4",
+    "drupal/core": "8.4.2",
+    "webflo/drupal-core-strict": "8.4.2",
+    "drush/drush": "dev-master",
+    "drupal/console": "~1.0",
+    "wikimedia/composer-merge-plugin": "~1.4.0",
+    "drupal/admin_toolbar": "~1",
+    "drupal/config_log": "1.1",
+    "drupal/imagecache_external": "1.0",
+    "drupal/field_group": "~1"
+  },
+  "require-dev": {
+    "drupal/drupal-extension": "~3",
+    "drupal/devel": "dev-1.x",
+    "drupal/features": "~3.5",
+    "devinci/devinci-behat-extension": "^0.1.0",
+    "drupal/restui": "1.14",
+    "ingenerator/behat-tableassert": "^1.1.1",
+    "mockery/mockery": "^0.9.4"
+  },
+  "conflict": {
+    "drupal/drupal": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "preferred-install": "dist",
+    "autoloader-suffix": "Drupal8"
+  },
+  "scripts": {
+    "cs": [
+      "phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml -n web/modules/custom/ web/profiles/",
+      "phpcs --standard=phpcs.xml.dist web/modules/custom/ web/profiles/"
+    ],
+    "offline": "drush -r web state-set system.maintenance_mode 1 --input-format=integer",
+    "online": "drush -r web state-set system.maintenance_mode 0 --input-format=integer",
+    "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+    "pre-install-cmd": [
+      "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+    ],
+    "pre-update-cmd": [
+      "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+    ],
+    "post-install-cmd": [
+      "@drupal-scaffold",
+      "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+    ],
+    "post-update-cmd": [
+      "@drupal-scaffold",
+      "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "Drupal\\Core\\Composer\\": "web/core/lib/Drupal/Core/Composer",
+      "Drupal\\composer_manager\\Composer\\": "web/modules/contrib/composer_manager/src/Composer"
+    },
+    "classmap": [
+      "scripts/composer/ScriptHandler.php"
+    ]
+  },
+  "extra": {
+    "installer-paths": {
+      "web/core": [
+        "type:drupal-core"
+      ],
+      "web/modules/{$vendor}/{$name}": [
+        "type:drupal-module"
+      ],
+      "web/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "web/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
+      ]
+    },
+    "merge-plugin": {
+      "include": [
+        "web/core/composer.json"
+      ],
+      "recurse": false,
+      "replace": false,
+      "merge-extra": false
+    },
+    "patches": {
+      "drupal/coder": {
+        "Allow underscore properties in Annotation classes": "https://www.drupal.org/files/issues/2804739-7.patch"
+      }
+    }
+  }
+}
+

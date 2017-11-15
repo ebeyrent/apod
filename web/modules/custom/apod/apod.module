@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ *
+ * This function provides a custom theme for a custom block.
+ */
+function apod_theme($existing, $type, $theme, $path) {
+  return [
+    'apod_block' => [
+      'variables' => ['content' => NULL, 'image' => NULL],
+    ],
+  ];
+}

@@ -1,0 +1,43 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+        - Drupal\DrupalExtension\Context\MarkupContext
+        - Devinci\DevinciExtension\Context\DebugContext:
+            asset_dump_path: %paths.base%/ci
+        - Devinci\DevinciExtension\Context\JavascriptContext:
+            maximum_wait: 30
+  extensions:
+    Behat\MinkExtension:
+      goutte: ~
+      selenium2: ~
+      browser_name: chrome
+      base_url: http://apod.sites.dev/
+      files_path: %paths.base%/features/files
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: 'drupal'
+      drush:
+        root: './web'
+      drupal:
+        drupal_root: './web'
+      selectors:
+        message_selector: '.messages'
+        error_message_selector: '.messages--error'
+        success_message_selector: '.messages--status'
+        warning_message_selector: '.messages--warning'
+      region_map:
+        content: div.region-content
+        secondary_menu: div.region-secondary-menu
+        sidebar_first: div.region-sidebar-first
+
+# Used by CI
+runserver:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://127.0.0.1:8080

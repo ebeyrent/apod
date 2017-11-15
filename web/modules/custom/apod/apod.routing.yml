@@ -1,0 +1,7 @@
+apod.config_form:
+  path: '/admin/config/media/apod'
+  defaults:
+    _form: '\Drupal\apod\Form\ApodConfigForm'
+    _title: 'APOD Configuration'
+  requirements:
+    _permission: 'administer apod'

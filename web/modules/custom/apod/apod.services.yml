@@ -1,0 +1,7 @@
+services:
+  apod.client:
+    class: Drupal\apod\ApodClient
+    arguments: ['@http_client', '@logger.factory', '@config.factory']
+  logger.channel.apod:
+      parent: logger.channel_base
+      arguments: ['apod.client']

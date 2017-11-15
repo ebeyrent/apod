@@ -1,0 +1,8 @@
+name: Astronomy Picture of the Day
+type: module
+description: Provides a block displaying the current Astronomy Picture of the Day
+core: 8.x
+version: 8.x-1.0-alpha1
+package: NASA
+dependencies:
+  - imagecache_external
