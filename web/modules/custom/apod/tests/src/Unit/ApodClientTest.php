@@ -164,6 +164,8 @@ class ApodClientTest extends UnitTestCase {
         $this->mockConfig->reveal()
       );
 
+      $apodClient->setStringTranslation($this->getStringTranslationStub());
+
       // Call the getAstronomyPictureOfTheDay() method and make sure all is good.
       $content = $apodClient->getAstronomyPictureOfTheDay();
       $this->assertNull($content);
