@@ -1,11 +1,11 @@
 {
-  "name": "raft/door-sign-generator",
-  "description": "RAFT Door Sign Generator",
+  "name": "ebeyrent/apod",
+  "description": "Astronomy Picture of the Day",
   "type": "project",
   "license": "GPL-2.0+",
   "authors": [
     {
-      "name": "",
+      "name": "Erich Beyrent",
       "role": ""
     }
   ],
@@ -16,28 +16,31 @@
     }
   ],
   "require": {
-    "composer/installers": "^1.0.20",
-    "drupal-composer/drupal-scaffold": "^2.0.1",
-    "cweagans/composer-patches": "~1.0",
-    "vlucas/phpdotenv": "^2.4",
-    "drupal/core": "8.4.2",
-    "webflo/drupal-core-strict": "8.4.2",
-    "drush/drush": "dev-master",
-    "drupal/console": "~1.0",
-    "wikimedia/composer-merge-plugin": "~1.4.0",
-    "drupal/admin_toolbar": "~1",
-    "drupal/config_log": "1.1",
-    "drupal/imagecache_external": "1.0",
-    "drupal/field_group": "~1"
+    "composer/composer": "^2.2",
+    "composer/installers": "^1.12.0",
+    "cweagans/composer-patches": "^1.7",
+    "drupal/admin_toolbar": "^3.3.0",
+    "drupal/core-composer-scaffold": "9.5.11",
+    "drupal/core-recommended": "9.5.11",
+    "drupal/core-vendor-hardening": "9.5.11",
+    "drush/drush": "^10.6.2",
+    "drupal/imagecache_external": "^3",
+    "drupal/field_group": "^3"
   },
   "require-dev": {
-    "drupal/drupal-extension": "~3",
-    "drupal/devel": "dev-1.x",
-    "drupal/features": "~3.5",
     "devinci/devinci-behat-extension": "^0.1.0",
-    "drupal/restui": "1.14",
-    "ingenerator/behat-tableassert": "^1.1.1",
-    "mockery/mockery": "^0.9.4"
+    "dmore/behat-chrome-extension": "^1.4",
+    "dmore/chrome-mink-driver": "^2.8.0",
+    "drupal/coder": "8.3.21",
+    "drupal/core-dev": "9.5.11",
+    "drupal/devel": "^5.1",
+    "drupal/drupal-extension": "^4.2",
+    "friends-of-behat/mink-extension": "^2.7.2",
+    "imbo/behat-api-extension": "2.0.1",
+    "ingenerator/behat-tableassert": "^1.2",
+    "mockery/mockery": "^1.5",
+    "phpspec/prophecy-phpunit": "^2",
+    "phpunit/phpunit": "^9.5"
   },
   "conflict": {
     "drupal/drupal": "*"
@@ -46,7 +49,14 @@
   "prefer-stable": true,
   "config": {
     "preferred-install": "dist",
-    "autoloader-suffix": "Drupal8"
+    "autoloader-suffix": "Drupal8",
+    "allow-plugins": {
+      "composer/installers": true,
+      "cweagans/composer-patches": true,
+      "drupal/core-composer-scaffold": true,
+      "drupal/core-vendor-hardening": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   },
   "scripts": {
     "cs": [
@@ -107,10 +117,7 @@
       "merge-extra": false
     },
     "patches": {
-      "drupal/coder": {
-        "Allow underscore properties in Annotation classes": "https://www.drupal.org/files/issues/2804739-7.patch"
-      }
+
     }
   }
 }
-
